@@ -21,6 +21,9 @@ switch($uc){
 	case 'etatFrais' :{
 		include("controleurs/c_etatFrais.php");break; 
 	}
+	case 'gestionPDF' :{
+		include("c_PDF");break;
+	}
 }
 include("vues/v_pied.php") ;
 
