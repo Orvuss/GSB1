@@ -1,6 +1,11 @@
 <?php
   session_start();
   include "../fpdf/fpdf.php";
+  include "../include/class.pdogsb.inc.php"
+  $bdd = __construct();
+  if($bdd){
+    $user = $_SESSION['idVisiteur'];
+ 
   
     $PDF = new fpdf();
     $PDF->AddPage();
@@ -65,4 +70,8 @@
     $nbCommade = $resultatNbCommade['nbCommade'];
     $nbCommade = $nbCommade + 1;
     $PDF->Output("commande/".$user.$nbCommade.".PDF", "F");
+  }
+  else{
+    echo "erreur";
+  }
 ?>
