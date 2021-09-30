@@ -56,6 +56,9 @@
           }
 		?>
     </table>
+    <form action="./vues/v_PDF.php" method="POST">
+            <input type="submit" value = "Payer">
+    </form>
   </div>
   </div>
  
