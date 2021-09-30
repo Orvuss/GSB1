@@ -1,17 +1,12 @@
 <?php
   session_start();
   include "../fpdf/fpdf.php";
-  include 'fonctionCo.php';
-  $bdd = connexion();
-  if ($bdd) {
-    $user = $_SESSION['user'];
-
-
+  
     $PDF = new fpdf();
     $PDF->AddPage();
     $PDF->SetFont("Arial","B",16);
     $PDF->SetTextColor(0,0,0);
-    $PDF->MultiCell(0, 10, "PDF de :\n" . $_SESSION['user'], 1, "C", 0);
+    $PDF->MultiCell(0, 10, "PDF de :\n" . $_SESSION['idVisiteur'], 1, "C", 0);
     $PDF->Image("../Image/logo.jpg", 80, 40, 50, 50);
 
     $position = 120; 
@@ -70,9 +65,4 @@
     $nbCommade = $resultatNbCommade['nbCommade'];
     $nbCommade = $nbCommade + 1;
     $PDF->Output("commande/".$user.$nbCommade.".PDF", "F");
-  }
-  else {
-    echo "Erreur de connexion a la base de données";
-  }
-
 ?>
