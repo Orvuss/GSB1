@@ -7,7 +7,7 @@
     $PDF->SetFont("Arial","B",16);
     $PDF->SetTextColor(0,0,0);
     $PDF->MultiCell(0, 10, "PDF de :\n" . $_SESSION['idVisiteur'], 1, "C", 0);
-    $PDF->Image("../Image/logo.jpg", 80, 40, 50, 50);
+    $PDF->Image("../images/logo.jpg", 80, 40, 50, 50);
 
     $position = 120; 
     $requete2 = mysqli_query($bdd,"SELECT * FROM panier WHERE userConnexion = '$user';");
