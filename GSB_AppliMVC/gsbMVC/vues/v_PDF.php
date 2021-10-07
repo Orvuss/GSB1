@@ -19,6 +19,7 @@
 
         $PDF->SetTextColor(0,0,0);
 
+        //Affichage des cell
 
         $PDF->SetFont("Arial","B",16);
         $PDF->SetY($position-8);
