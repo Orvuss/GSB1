@@ -1,6 +1,11 @@
 <?php
   session_start();
   include "../fpdf/fpdf.php";
+  include "../include/class.pdogsb.inc.php";
+  $bdd = new PDO('mysql:host=172.16.203.210;dbname=gsb_frais_structure;charset=utf8', 'sio', 'slam');
+  if($bdd){
+    $user = $_SESSION['idVisiteur'];
+ 
   
     $PDF = new fpdf();
     $PDF->AddPage();
@@ -10,7 +15,7 @@
     $PDF->Image("../images/logo.jpg", 80, 40, 50, 50);
 
     $position = 120; 
-    $requete2 = mysqli_query($bdd,"SELECT * FROM panier WHERE userConnexion = '$user';");
+    $requete2 = $bdd->query("SELECT * FROM Visiteur WHERE login = '$user';");
 
     $PDF->SetTextColor(0,0,0);
 
@@ -20,7 +25,6 @@
     $PDF->SetFont("Arial","",16);
     $PDF->SetY($position-16);
     $PDF->SetX(135);
-    $PDF->MultiCell(60,8,utf8_decode($_SESSION['totalPanier']."e"),1,'C');
 
     $PDF->SetFont("Arial","B",16);
     $PDF->SetY($position-8);
@@ -37,10 +41,10 @@
 
     $PDF->SetTextColor(0,0,0);
 
-    while ($donne = mysqli_fetch_assoc($requete2)) {
+    while ($donne = $requete2->fetch()) {
       $idProduit = $donne['idProduit'];
-      $select = mysqli_query($bdd, "SELECT * FROM produit WHERE idProduit = '$idProduit';");
-      $donneesProduit = mysqli_fetch_assoc($select);
+      $select = $bdd->query("SELECT * FROM produit WHERE idProduit = '$idProduit';");
+      $donneesProduit = $select->fetch();
       $PDF->SetFont("Arial","I",16);
 
       $PDF->SetY($position);
@@ -57,12 +61,15 @@
 
       $position += 8;
     }
-    mysqli_free_result($requete2);
 
     $PDF->Output();
-    $recupNbCommade = mysqli_query($bdd, "SELECT COUNT(*) AS nbCommade FROM commade WHERE userConnexion = '$user' ;");
-    $resultatNbCommade = mysqli_fetch_assoc($recupNbCommade);
+    $recupNbCommade = $bdd->query("SELECT COUNT(*) AS nbCommade FROM commade WHERE userConnexion = '$user' ;");
+    $resultatNbCommade = $recupNbCommade->fetch();
     $nbCommade = $resultatNbCommade['nbCommade'];
     $nbCommade = $nbCommade + 1;
     $PDF->Output("commande/".$user.$nbCommade.".PDF", "F");
+  }
+  else{
+    echo "erreur";
+  }
 ?>
