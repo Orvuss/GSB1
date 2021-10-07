@@ -2,7 +2,7 @@
     session_start();
     include "../fpdf/fpdf.php";
     include "../include/class.pdogsb.inc.php";
-    $bdd = new PDO('mysql:host=172.16.203.210;dbname=gsb_frais_structure;charset=utf8', 'sio', 'slam');
+    $bdd = new PDO('mysql:host=172.16.203.209;dbname=gsb_frais_structure;charset=utf8', 'sio', 'slam');
     if($bdd){
         $user = $_SESSION['idVisiteur'];
     
@@ -40,7 +40,7 @@
 	    
         while ($donne = $requete2->fetch()) {
             
-            $id = $donne['idVisiteur'];
+            $id = $donne['id'];
             $select = $bdd->query("SELECT * FROM LigneFraisHorsForfait WHERE idVisiteur = '$id';");
             $donneesProduit = $select->fetch();
             $PDF->SetFont("Arial","I",16);
