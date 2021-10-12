@@ -18,7 +18,6 @@
         $requete2 = $bdd->prepare("SELECT * FROM Visiteur WHERE login = :num;");
         $requete2->bindParam(':num', $user);
         $requete2->execute();
-        $resultat = $requete2->fetch();
         $PDF->SetTextColor(0,0,0);
 
         //Affichage des cell
