@@ -15,8 +15,9 @@
         $PDF->Image("../images/logo.jpg", 80, 40, 50, 50);
 
         $position = 120; 
-        $requete2 = $bdd->query("SELECT * FROM Visiteur WHERE login = '$user';");
-
+        $requete2 = $bdd->prepare("SELECT * FROM Visiteur WHERE login = :num;");
+        $requete2->bindParam(':num', $user);
+        $requete2->execute();
         $PDF->SetTextColor(0,0,0);
 
         //Affichage des cell
@@ -49,7 +50,7 @@
             
         
         $id = $donne['id'];
-        $select = $bdd->query("SELECT * FROM LigneFraisHorsForfait WHERE id = 1;");
+        $select = $bdd->query("SELECT * FROM LigneFraisHorsForfait WHERE idVisiteur = '$user';");
         $donneesProduit = $select->fetch();
         $PDF->SetFont("Arial","I",16);
 
