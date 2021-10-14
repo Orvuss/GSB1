@@ -29,10 +29,5 @@ include("vues/v_pied.php") ;
 
 //yihujk
 
-<<<<<<< HEAD
 //jhqgsdf
-=======
-
-//:;kjhgf
->>>>>>> Leo
 ?>
