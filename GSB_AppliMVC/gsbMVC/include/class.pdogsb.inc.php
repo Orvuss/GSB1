@@ -81,12 +81,10 @@ class PdoGsb{
  * @param $mois sous la forme aaaamm
  * @return tous les champs des lignes de frais hors forfait sous la forme d'un tableau associatif 
 */
-	public function getLesFraisHorsForfait($idVisiteur,$mois){
-	    $req = "select * from LigneFraisHorsForfait where LigneFraisHorsForfait.idVisiteur =:idV
-		and LigneFraisHorsForfait.mois = :mois ";	
+	public function getLesFraisHorsForfait($idVisiteur){
+	    $req = "select * from LigneFraisHorsForfait where LigneFraisHorsForfait.idVisiteur =:idV";	
 		$res = PdoGsb::$monPdo->prepare($req);
 		$res->bindParam(':idV', $idVisiteur);
-		$res->bindParam(':mois', $mois);
 		$res->execute();		
 		$lesLignes = $res->fetchAll();
 		$nbLignes = count($lesLignes);

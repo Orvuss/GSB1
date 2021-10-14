@@ -24,23 +24,23 @@
 
     
         $PDF->SetY($position-8);
-        $PDF->SetX(25);
+        $PDF->SetX(15);
         $PDF->MultiCell(60,8,utf8_decode("Id du visiteur"),4,'C');
 
         $PDF->SetY($position-8);
-        $PDF->SetX(55);
+        $PDF->SetX(45);
         $PDF->MultiCell(60,8,utf8_decode("Mois"),4,'C');
 
         $PDF->SetY($position-8);
-        $PDF->SetX(85);
+        $PDF->SetX(75);
         $PDF->MultiCell(60,8,utf8_decode("Libellé"),4,'C');
 
         $PDF->SetY($position-8);
-        $PDF->SetX(120);
+        $PDF->SetX(110);
         $PDF->MultiCell(60,8,utf8_decode("Date"),4,'C');
 
         $PDF->SetY($position-8);
-        $PDF->SetX(150);
+        $PDF->SetX(140);
         $PDF->MultiCell(60,8,utf8_decode("Montant"),4,'C');
 
         $PDF->SetTextColor(0,0,0);
@@ -57,23 +57,23 @@
         $PDF->SetFont("Arial","I",16);
 
         $PDF->SetY($position);
-        $PDF->SetX(25);
+        $PDF->SetX(15);
         $PDF->MultiCell(60,8,utf8_decode($donneesProduit['idVisiteur']),4,'C');
 
         $PDF->SetY($position);
-        $PDF->SetX(55);
+        $PDF->SetX(45);
         $PDF->MultiCell(60,8,utf8_decode($donneesProduit['mois']),4,'C');
 
         $PDF->SetY($position);
-        $PDF->SetX(85);
+        $PDF->SetX(75);
         $PDF->MultiCell(60,8,utf8_decode($donneesProduit['libelle']),4,'C');
 
         $PDF->SetY($position);
-        $PDF->SetX(120);
+        $PDF->SetX(110);
         $PDF->MultiCell(60,8,utf8_decode($donneesProduit['date']),4,'C');
 
         $PDF->SetY($position);
-        $PDF->SetX(150);
+        $PDF->SetX(140);
         $PDF->MultiCell(60,8,utf8_decode($donneesProduit['montant']),4,'C');
 
         $position += 8;
