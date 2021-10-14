@@ -26,6 +26,28 @@ switch($action){
 		}
 		break;
 	}
+	case 'valideConnexionComptable':{
+		$login = $_REQUEST['login'];
+		$mdp = sha1($_REQUEST['mdp']);
+		$visiteur = $pdo->getInfosVisiteur($login,$mdp);
+		if(!is_array( $visiteur)){
+			ajouterErreur("Login ou mot de passe incorrect");
+			include("vues/v_erreurs.php");
+			include("vues/v_connexion.php");
+		}
+		else{
+			$id = $visiteur['id'];
+			$nom =  $visiteur['nom'];
+			$prenom = $visiteur['prenom'];
+			connecter($id,$nom,$prenom);
+			include("vues/v_sommaire.php");
+		}
+		break;
+	}
+
+
+
+
 	default :{
 		include("vues/v_connexion.php");
 		break;
