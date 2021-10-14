@@ -26,4 +26,5 @@ switch($uc){
 	}
 }
 include("vues/v_pied.php") ;
+//Pour que ça marche
 ?>
