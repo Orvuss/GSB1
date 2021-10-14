@@ -50,7 +50,9 @@
             
         
         $id = $donne['id'];
-        $select = $bdd->query("SELECT * FROM LigneFraisHorsForfait WHERE idVisiteur = '$user';");
+        $select = $bdd->prepare("SELECT * FROM LigneFraisHorsForfait WHERE idVisiteur = :numero;");
+        $select->bindParam(':numero', $user);
+        $select->execute();
         $donneesProduit = $select->fetch();
         $PDF->SetFont("Arial","I",16);
 
