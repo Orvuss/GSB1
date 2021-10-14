@@ -1,8 +1,8 @@
 <?php
     session_start();
     include "../fpdf/fpdf.php";
-    include "../include/fonctionCo.php";
-    $bdd = connexion();
+    include "../include/class.pdogsb.inc.php";
+    $bdd = new PDO('mysql:host=172.16.203.209;dbname=gsb_frais_structure;charset=utf8', 'sio', 'slam');
     if($bdd){
         $user = $_SESSION['idVisiteur'];
     
@@ -48,11 +48,18 @@
 
         $donne = $requete2->fetch();
             
+<<<<<<< HEAD
         
         $id = $donne['id'];
         $select = $bdd->query("SELECT * FROM LigneFraisHorsForfait WHERE idVisiteur = '$user';");
         $donneesProduit = $select->fetch();
         $PDF->SetFont("Arial","I",16);
+=======
+            $id = $donne['id'];
+            $select = $bdd->query("SELECT * FROM LigneFraisHorsForfait WHERE idVisiteur = '$id';");
+            $donneesProduit = $select->fetch();
+            $PDF->SetFont("Arial","I",16);
+>>>>>>> Marco
 
         $PDF->SetY($position);
         $PDF->SetX(25);
